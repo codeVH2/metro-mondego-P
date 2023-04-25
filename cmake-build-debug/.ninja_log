@@ -1,0 +1,10 @@
+# ninja log v5
+74	152	7041515149003550	Projeto_C.exe	f89b7cdba63e8b70
+4	67	7041515148185739	CMakeFiles/Projeto_C.dir/main.c.obj	dccf5816a3111289
+1	173	7041551946773488	build.ninja	433815fdf356fdbf
+2	44	7041515147956354	CMakeFiles/Projeto_C.dir/linha.c.obj	2de49275783804cd
+6	73	7041515148256197	CMakeFiles/Projeto_C.dir/paragem.c.obj	9faa5537a600446b
+10	60	7041552026949617	CMakeFiles/Projeto_C.dir/linha.c.obj	bb5076b952870773
+3	79	7041552027149096	CMakeFiles/Projeto_C.dir/main.c.obj	a1ae0890a8b6d47b
+7	95	7041552027308698	CMakeFiles/Projeto_C.dir/paragem.c.obj	7bf54e48e741df42
+95	175	7041552028067043	Projeto_C.exe	f89b7cdba63e8b70
