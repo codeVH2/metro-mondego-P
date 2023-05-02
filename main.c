@@ -2,26 +2,79 @@
 #include <stdlib.h>
 #include "paragem.h"
 #include "linha.h"
+#include <string.h>
 
 
 
 int main(void) {
     int nParagens = 0;
-    Paragem *ps = NULL;
-    Paragem p;
+    Paragem *ps = NULL; //array de paragens
+    Paragem p;      //uma paragem
+    Linha *linha = NULL; //linked list das linhas
+    char nome[10];
 
-    p= criarParagem();
+    printf("1 - Registar paragem\n");
+    printf("2 - Listar paragens\n");
+    printf("3 - Apagar paragem\n");
+    printf("4 - Registar linha\n");
+    printf("5 - Listar linhas\n");
+    printf("6 - Apagar linha\n");
+    printf("7 - Sair\n");
 
-    ps = registarParagem(ps, &nParagens, p);
-    p= criarParagem();
-    ps = registarParagem(ps, &nParagens, p);
-    p= criarParagem();
-    ps = registarParagem(ps, &nParagens, p);
+    int opcao = 0;
 
-    for(int i = 0; i < nParagens; i++){
-        printf("Paragem(\"%s\", \"%s\")\n", ps[i].nome, ps[i].codigo);
+    while (opcao != 7){
+
+        scanf("%d", &opcao);
+
+        switch(opcao){
+            case 1:
+                p = criarParagem();
+                ps = registarParagem(ps, &nParagens, p);                
+                continue;
+            case 2:
+                mostrarParagens(ps, nParagens);
+                continue;
+            case 3:
+                scanf("%s", nome);
+                nome[strlen(nome)] = '\0';
+                int posicao = getParagem(ps, nome, &nParagens);
+                printf("%d\n", posicao);
+                ps = apagaParagem(ps, posicao, &nParagens);
+                continue;
+            case 4:
+
+                continue;
+            default:
+                printf("Opcao invalida\n");
+                continue;
+        }
     }
 
-    printf("%d", nParagens);
     return 0;
+
+    /*p = criarParagem();
+    ps = registarParagem(ps, &nParagens, p);
+    p = criarParagem();
+    ps = registarParagem(ps, &nParagens, p);
+    p = criarParagem();
+    ps = registarParagem(ps, &nParagens, p);
+
+    mostrarParagens(ps, nParagens);
+
+
+    printf("%d\n", nParagens);
+
+    char nome[10];
+    fgets(nome, 10, stdin);
+    nome[strlen(nome) - 1] = '\0';
+
+    int posicao = getParagem(ps, nome, &nParagens);
+    printf("%d\n", posicao);
+
+    apagaParagem(ps, posicao, &nParagens);
+
+    mostrarParagens(ps, nParagens);*/
+
+   
 }

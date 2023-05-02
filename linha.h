@@ -6,11 +6,13 @@
 
 
 /* Estrutura de uma linha */
-typedef struct {
+typedef struct Linha{
     char nome[N];           // Nome da linha
     int n_paragens;         // Número de paragens que a linha possui
-    //Paragem** paragens;     // Ponteiro para um array de ponteiros das paragens
-    struct linha *prox;  // Ponteiro para a próxima linha na lista ligada de linhas
+    struct Paragem* paragens;     // Ponteiro array de paragens
+    struct Linha *prox;  // Ponteiro para a próxima linha na lista ligada de linhas
 } Linha;
+
+
 
 #endif //PROJETO_C_LINHA_H
