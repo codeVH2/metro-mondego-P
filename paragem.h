@@ -1,7 +1,7 @@
 #ifndef PROJETO_C_PARAGEM_H
 #define PROJETO_C_PARAGEM_H
 
-#include "linha.h"
+
 #define N 255
 
 

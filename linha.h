@@ -9,7 +9,7 @@
 typedef struct Linha{
     char nome[N];           // Nome da linha
     int n_paragens;         // Número de paragens que a linha possui
-    struct Paragem* paragens;     // Ponteiro array de paragens
+    Paragem* paragens;     // Ponteiro array de paragens
     struct Linha *prox;  // Ponteiro para a próxima linha na lista ligada de linhas
 } Linha;
 

@@ -11,9 +11,19 @@ Paragem criarParagem(){
     Paragem p;
 
     puts("Escolha um nome para a paragem: ");
-    scanf("%s", p.nome);            // ler o nome da paragem
+    if(!fgets(p.nome, 255, stdin)) // ler o nome da paragem
+    {
+        fprintf(stderr, "Erro de leitura");
+        strcpy(p.nome, "default");
+
+    };
     p.nome[strlen(p.nome)] = '\0';            // tirar o espaço
-    scanf("%s", p.codigo);
+    if(!fgets(p.codigo, 5, stdin))
+    {
+        fprintf(stderr, "Erro de leitura");
+        strcpy(p.codigo, "0000");
+
+    };
     p.codigo[strlen(p.codigo)] = '\0';            // tirar o espaço
     return p;
 }
@@ -58,14 +68,13 @@ int getParagem(Paragem *ps, char nome[], int *nParagens){
             indice = i;
             break;
         }
-        
     }
         return indice;
 }
 
 void mostrarParagens(Paragem *ps, int nParagens){
     for(int i = 0; i < nParagens; i++){
-        printf("Paragem(\"%s\", \"%s\")\n", ps[i].nome, ps[i].codigo);
+        printf("Paragem( ""%d"":\"%s\", \"%s\"\n)",i, ps[i].nome, ps[i].codigo);
     }
 }
 

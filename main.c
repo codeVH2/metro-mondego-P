@@ -13,19 +13,26 @@ int main(void) {
     Linha *linha = NULL; //linked list das linhas
     char nome[10];
 
-    printf("1 - Registar paragem\n");
-    printf("2 - Listar paragens\n");
-    printf("3 - Apagar paragem\n");
-    printf("4 - Registar linha\n");
-    printf("5 - Listar linhas\n");
-    printf("6 - Apagar linha\n");
-    printf("7 - Sair\n");
 
-    int opcao = 0;
+
+    char Stropcao[255];
+    int opcao;
 
     while (opcao != 7){
 
-        scanf("%d", &opcao);
+        printf("1 - Registar paragem\n");
+        printf("2 - Listar paragens\n");
+        printf("3 - Apagar paragem\n");
+        printf("4 - Registar linha\n");
+        printf("5 - Listar linhas\n");
+        printf("6 - Apagar linha\n");
+        printf("7 - Sair\n");
+
+      if  (!fgets(Stropcao, 255, stdin)){
+          fprintf(stderr, "Erro de leitura");
+          continue;
+      }
+      opcao = atoi(Stropcao);
 
         switch(opcao){
             case 1:
@@ -36,7 +43,9 @@ int main(void) {
                 mostrarParagens(ps, nParagens);
                 continue;
             case 3:
-                scanf("%s", nome);
+                if(!fgets(nome, 255, stdin)){
+                    fprintf(stderr, "Erro de Leitura");
+                }
                 nome[strlen(nome)] = '\0';
                 int posicao = getParagem(ps, nome, &nParagens);
                 printf("%d\n", posicao);
