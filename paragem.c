@@ -74,7 +74,7 @@ int getParagem(Paragem *ps, char nome[], int *nParagens){
 
 void mostrarParagens(Paragem *ps, int nParagens){
     for(int i = 0; i < nParagens; i++){
-        printf("Paragem( ""%d"":\"%s\", \"%s\"\n)",i, ps[i].nome, ps[i].codigo);
+        printf("Paragem - %d: %s, %s\n", i, ps[i].nome, ps[i].codigo);
     }
 }
 
