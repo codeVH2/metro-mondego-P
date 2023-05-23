@@ -5,15 +5,30 @@
 #include "paragem.h"
 #include "linha.h"
 
+/*Nome : paragensParaLinha
+ * recebe:
+ * ps - ponteiro para o array de Paragens Geral
+ * nParagens - Numero de paragens nesse array
+ * nParagens2 - Numero de paragens no array de paragens numa linha
+ *
+ * Devolve:
+ * ps2 - array the paragens na linha*/
 Paragem* paragensParaLinha(Paragem* ps, int nParagens, int* nParagens2){
     Paragem* ps2 = NULL; //paragens no array nas linhas
     char Strindice[255];
-    int indice;
+    int option;
     mostrarParagens(ps, nParagens);
-    printf("Escolha a paragem quer adicionar a sua linha indicando o seu nome: ");
-    fgets(Strindice, 255, stdin);
-    indice = atoi(Strindice);   
+    printf("Escolha as paragens que quer adicionar a sua linha indicando o seu numero: \n");
 
+    do{
+
+        fgets(Strindice, 255, stdin);
+        option = atoi(Strindice);
+        if(option >= 0)
+           ps2 = registarParagem(ps2, nParagens2, ps[option]);
+    }while(option != -1);
+
+    return ps2;
 }
 
 Linha* criarLinha(Paragem* ps, int nParagens){
@@ -21,7 +36,7 @@ Linha* criarLinha(Paragem* ps, int nParagens){
     printf("Nome para a linha: ");
     scanf("%s", linha->nome);
     linha->n_paragens = 0;
-    linha->paragens = paragensParaLinha(ps, nParagens, &linha->n_paragens );
+    linha->paragens = paragensParaLinha( ps ,  nParagens , &linha->n_paragens );
     linha->prox = NULL;
     return linha;
 }
@@ -35,4 +50,18 @@ Linha* registarLinha(Linha *ls, Linha *l){
         aux = aux->prox;
     }
     aux->prox = l;
+
+    return ls;
+}
+
+void mostrarLinhas(Linha* linha){
+
+
+    while(linha){
+        printf("Linha: %s\n", linha->nome);
+        mostrarParagens(linha->paragens, linha->n_paragens);
+        printf("\n");
+        linha = linha->prox;
+    }
+
 }

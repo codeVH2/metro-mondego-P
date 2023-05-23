@@ -11,6 +11,7 @@ int main(void) {
     Paragem *ps = NULL; //array de paragens
     Paragem p;      //uma paragem
     Linha *linha = NULL; //linked list das linhas
+    Linha *nova;
     char nome[10];
 
 
@@ -52,7 +53,11 @@ int main(void) {
                 ps = apagaParagem(ps, posicao, &nParagens);
                 continue;
             case 4:
-
+                nova = criarLinha(ps, nParagens);
+                registarLinha(linha, nova);
+                continue;
+            case 5:
+                mostrarLinhas(linha);
                 continue;
             default:
                 printf("Opcao invalida\n");
