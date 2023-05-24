@@ -24,8 +24,10 @@ Paragem* paragensParaLinha(Paragem* ps, int nParagens, int* nParagens2){
 
         fgets(Strindice, 255, stdin);
         option = atoi(Strindice);
+
         if(option >= 0)
            ps2 = registarParagem(ps2, nParagens2, ps[option]);
+
     }while(option != -1);
 
     return ps2;
@@ -64,6 +66,7 @@ void mostrarLinhas(Linha* linha){
 
     while(linha){
         printf("Linha: %s\n", linha->nome);
+        printf("Numero de Paragens: %d\n", linha->n_paragens);
         mostrarParagens(linha->paragens, linha->n_paragens);
         printf("\n");
         linha = linha->prox;
