@@ -54,7 +54,7 @@ int main(void) {
                 continue;
             case 4:
                 nova = criarLinha(ps, nParagens);
-                registarLinha(linha, nova);
+                linha = registarLinha(linha, nova);
                 continue;
             case 5:
                 mostrarLinhas(linha);

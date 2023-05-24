@@ -42,6 +42,10 @@ Linha* criarLinha(Paragem* ps, int nParagens){
 }
 
 Linha* registarLinha(Linha *ls, Linha *l){
+
+    //printf("%s\n", l->nome); //testes
+    //mostrarParagens(l->paragens, l->n_paragens); //testes
+
     if(ls == NULL)
         return l;
 
@@ -52,6 +56,7 @@ Linha* registarLinha(Linha *ls, Linha *l){
     aux->prox = l;
 
     return ls;
+
 }
 
 void mostrarLinhas(Linha* linha){
