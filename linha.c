@@ -96,7 +96,6 @@ Linha* getLinha(Linha *ls){
 
     while(aux != NULL){
         if(strcmp(aux->nome, nome) == 0){
-            printf("\naqui\n");
             return aux;
         }else
             aux = aux->prox;
