@@ -12,6 +12,7 @@ int main(void) {
     Paragem p;      //uma paragem
     Linha *linha = NULL; //linked list das linhas
     Linha *nova;
+    Linha* teste; //para testes SÓ
     char nome[10];
 
 
@@ -26,7 +27,7 @@ int main(void) {
         printf("3 - Apagar paragem\n");
         printf("4 - Registar linha\n");
         printf("5 - Listar linhas\n");
-        printf("6 - Apagar linha\n");
+        printf("6 - Modificar Linha\n");
         printf("7 - Sair\n");
 
       if  (!fgets(Stropcao, 255, stdin)){
@@ -37,19 +38,20 @@ int main(void) {
 
         switch(opcao){
             case 1:
-                p = criarParagem();
+                p = criarParagem(ps, &nParagens);
                 ps = registarParagem(ps, &nParagens, p);                
                 continue;
             case 2:
                 mostrarParagens(ps, nParagens);
                 continue;
             case 3:
+                printf("Digite o nome da paragem que deseja apagar: \n");
                 if(!fgets(nome, 255, stdin)){
                     fprintf(stderr, "Erro de Leitura");
                 }
                 nome[strlen(nome)] = '\0';
                 int posicao = getParagem(ps, nome, &nParagens);
-                printf("%d\n", posicao);
+                printf("Paragem numero:%d foi apagada\n", posicao);
                 ps = apagaParagem(ps, posicao, &nParagens);
                 continue;
             case 4:
@@ -58,6 +60,10 @@ int main(void) {
                 continue;
             case 5:
                 mostrarLinhas(linha);
+                continue;
+            case 6:
+                teste = getLinha(linha);
+                mostrarLinhas(teste);
                 continue;
             default:
                 printf("Opcao invalida\n");

@@ -7,52 +7,68 @@
 
 /* Nome: criarParagem
  * Cria uma paragem do tipo struct Paragem com nome e codigo alfanumerico*/
-Paragem criarParagem(){
+Paragem criarParagem(Paragem *ps, int *nParagens) {
     Paragem p;
+    int flag = 0;
 
-    puts("Escolha um nome para a paragem: ");
-    if(!fgets(p.nome, 255, stdin)) // ler o nome da paragem
-    {
-        fprintf(stderr, "Erro de leitura");
-        strcpy(p.nome, "default");
+    do {
+        puts("Escolha um nome para a paragem: ");
+        if (!fgets(p.nome, 255, stdin)) // ler o nome da paragem
+        {
+            fprintf(stderr, "Erro de leitura");
+            strcpy(p.nome, "default");
+        };
 
-    };
-    p.nome[strlen(p.nome)] = '\0';            // tirar o espaço
-    if(!fgets(p.codigo, 5, stdin))
-    {
-        fprintf(stderr, "Erro de leitura");
-        strcpy(p.codigo, "0000");
+        for (int i = 0; i < *nParagens; i++) {
+            if (strcmp(p.nome, ps[i].nome) == 0) {
+                flag = 1;
+            }else
+                flag = 0;
 
-    };
-    p.codigo[strlen(p.codigo)] = '\0';            // tirar o espaço
-    return p;
+        }
+    }while (flag == 1);
+
+
+        p.nome[strlen(p.nome)] = '\0';            // tirar o espaço
+        if (!fgets(p.codigo, 5, stdin)) {
+            fprintf(stderr, "Erro de leitura");
+            strcpy(p.codigo, "0000");
+
+        };
+        p.codigo[strlen(p.codigo)] = '\0';            // tirar o espaço
+        return p;
 }
+
 
 /* Nome: registarParagem
  * Regista a paragem na ultima posição do array dinamico de estruturas de paragens
  *
  * ps - O array dinamico de estruturas de paragens
- * nParagens - numero de paragens que constam no array
+ * nP - numero de paragens que constam no array
  * p - Paragem ja criada pela função criarParagem()
  *
  * return ps - devolve o array atualizado com a nova Paragem
  * */
-Paragem* registarParagem(Paragem *ps, int *nParagens, Paragem p) {
+Paragem* registarParagem(Paragem *ps, int *nP, Paragem p) {
     Paragem *aux;
 
-    if(*nParagens < 0)
-        *nParagens = 0;
-    (*nParagens)++;
 
-    aux = realloc(ps, (*nParagens) * sizeof(Paragem));
+    if(*nP < 0)
+        *nP = 0;
+    (*nP)++;
+
+
+    aux = realloc(ps, (*nP) * sizeof(Paragem));
     if(aux == NULL){
         fprintf(stderr, "Não foi possivel registar uma nova paragem.\n"); //da print sem encher o stdio
-        (*nParagens)--;
+        (*nP--);
         return ps;
     }
 
-    aux[*nParagens - 1] = p; // copia a paragem para a ultima posição do array
-    
+    strcpy(aux[(*nP)-1].nome, p.nome);
+    strcpy(aux[(*nP)-1].codigo, p.codigo);
+    //aux[*nP - 1] = p; // copia a paragem para a ultima posição do array
+
     return aux;
     
 }

@@ -18,4 +18,5 @@ Linha* criarLinha(Paragem* ps, int nParagens);
 Linha* registarLinha(Linha *ls, Linha *l);
 Paragem* paragensParaLinha(Paragem* ps, int nParagens, int* nParagens2);
 void mostrarLinhas(Linha* linha);
+Linha* getLinha(Linha *ls);
 #endif //PROJETO_C_LINHA_H

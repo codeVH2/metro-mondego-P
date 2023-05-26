@@ -15,34 +15,43 @@
  * ps2 - array the paragens na linha*/
 Paragem* paragensParaLinha(Paragem* ps, int nParagens, int* nParagens2){
     Paragem* ps2 = NULL; //paragens no array nas linhas
-    char Strindice[255];
+    char strindice[255];
     int option;
     mostrarParagens(ps, nParagens);
+
     printf("Escolha as paragens que quer adicionar a sua linha indicando o seu numero: \n");
 
     do{
+        fgets(strindice, 255, stdin);
+        option = atoi(strindice);
 
-        fgets(Strindice, 255, stdin);
-        option = atoi(Strindice);
+        if(option >= 0 && option < nParagens){
+            ps2 = registarParagem(ps2, nParagens2, ps[option]);
+        }
 
-        if(option >= 0)
-           ps2 = registarParagem(ps2, nParagens2, ps[option]);
 
     }while(option != -1);
 
     return ps2;
 }
 
+/*Nome criarLinha
+ * cria uma linha com os campos preenchidos
+ * recebe o array das paragens e o numero de paragens para depois criar o array de paragens da linha usadndo a duncao paragensParaLinha*/
 Linha* criarLinha(Paragem* ps, int nParagens){
     Linha* linha = (Linha*) malloc(sizeof(Linha));
     printf("Nome para a linha: ");
-    scanf("%s", linha->nome);
+    fgets(linha->nome, N, stdin);
     linha->n_paragens = 0;
     linha->paragens = paragensParaLinha( ps ,  nParagens , &linha->n_paragens );
     linha->prox = NULL;
     return linha;
 }
 
+/*Nome: registaLinha
+ * adiciona uma linha a linked list
+ * recebe um ponteiro para a lista e um ponteiro para a linha
+ * devolve a lista*/
 Linha* registarLinha(Linha *ls, Linha *l){
 
     //printf("%s\n", l->nome); //testes
@@ -61,15 +70,39 @@ Linha* registarLinha(Linha *ls, Linha *l){
 
 }
 
+/*Nome: mostrarLinhas
+ * mostra o conteudo de cada linha da linked list*/
 void mostrarLinhas(Linha* linha){
 
-
     while(linha){
-        printf("Linha: %s\n", linha->nome);
+        printf("Nome da linha: %s\n", linha->nome);
         printf("Numero de Paragens: %d\n", linha->n_paragens);
+        printf("Paragens: \n\n");
         mostrarParagens(linha->paragens, linha->n_paragens);
         printf("\n");
         linha = linha->prox;
     }
+}
+
+/*Nome: getLinha
+ * recebe o inicio da linked list das linhas e procura um nó apartir do nome.
+ * devolve um ponteiro para esse nó*/
+Linha* getLinha(Linha *ls){
+    char nome[255];
+    fgets(nome, 255, stdin);
+
+    Linha* aux;
+    aux = ls;
+
+    while(aux != NULL){
+        if(strcmp(aux->nome, nome) == 0){
+            printf("\naqui\n");
+            return aux;
+        }else
+            aux = aux->prox;
+    }
+
+    fprintf(stderr, "Nome nao da match com nenhuma paragem atual\n");
+    return 0;
 
 }
