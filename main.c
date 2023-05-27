@@ -62,8 +62,27 @@ int main(void) {
                 mostrarLinhas(linha);
                 continue;
             case 6:
-                teste = getLinha(linha);
-                printf("%s", teste->nome);
+                printf("Selecione uma opcao:\n");
+                printf("1 - Adicionar paragens a uma linha ja existente\n");
+                printf("2 - Remover paragens de uma linha\n");
+
+                if(!fgets(Stropcao, 255, stdin))
+                {
+                    fprintf(stderr, "Erro ao ler a string do stdin.\n");
+                }
+                int opcao6 = atoi(Stropcao);
+
+                switch(opcao6) {
+                    case 1:
+                        addParagemParaLinha(linha, ps, nParagens);
+                        continue;
+                    case 2:
+                        continue;
+                }
+
+
+                //teste = getLinha(linha);
+               // printf("%s", teste->nome);
                 continue;
             default:
                 printf("Opcao invalida\n");

@@ -105,3 +105,38 @@ Linha* getLinha(Linha *ls){
     return 0;
 
 }
+
+/*Nome: addParagemParaLinha
+ * Recebe:
+ * l- ponteiro para as linhas
+ * p - ponteiro para as paragens
+ * nParagens - Numero de Paragens no array de paragens
+ *
+ * devolve:
+ * l - ponteiro para linhas*/
+Linha* addParagemParaLinha(Linha* l, Paragem *p, int nParagens){
+    Linha *linhaParaMudar;
+    char strindice[255];
+    int option;
+
+    mostrarLinhas(l);
+    linhaParaMudar = getLinha(l);
+    mostrarParagens(p, nParagens);
+
+    printf("Escolha as paragens que quer adicionar a sua Linha introduzindo o seu numero.\n");
+    printf("Introduza '-1' quando acabar\n");
+
+    do{
+        fgets(strindice, 255, stdin);
+        option = atoi(strindice);
+
+        if(option >= 0 && option < nParagens){
+            linhaParaMudar->paragens = registarParagem(linhaParaMudar->paragens, &linhaParaMudar->n_paragens , p[option]);
+        }
+
+
+    }while(option != -1);
+
+    return l;
+
+}
