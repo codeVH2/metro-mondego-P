@@ -15,7 +15,7 @@ typedef struct {
 
 Paragem criarParagem(Paragem *ps, int *nParagens);
 Paragem* registarParagem(Paragem *ps, int *nParagens, Paragem p);
-int getParagem(Paragem *ps, char nome[], int *nParagens);
+int getParagem(Paragem *ps, char cod[], int *nParagens);
 Paragem* apagaParagem(Paragem *ps, int posicao, int *nParagens);
 void mostrarParagens(Paragem *ps, int nParagens);
 #endif //PROJETO_C_PARAGEM_H
