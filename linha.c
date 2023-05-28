@@ -120,6 +120,7 @@ Linha* addParagemParaLinha(Linha* l, Paragem *p, int nParagens){
     int option;
 
     mostrarLinhas(l);
+    printf("Escolha a linha que quer alterar introduzindo o seu nome.\n");
     linhaParaMudar = getLinha(l);
     mostrarParagens(p, nParagens);
 

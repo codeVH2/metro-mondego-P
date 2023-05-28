@@ -9,7 +9,7 @@
  * Cria uma paragem do tipo struct Paragem com nome e codigo alfanumerico*/
 Paragem criarParagem(Paragem *ps, int *nParagens) {
     Paragem p;
-    int flag = 0;
+    int repeat = 0;
 
     do {
         puts("Escolha um nome para a paragem: ");
@@ -20,13 +20,13 @@ Paragem criarParagem(Paragem *ps, int *nParagens) {
         };
 
         for (int i = 0; i < *nParagens; i++) {
-            if (strcmp(p.nome, ps[i].nome) == 0) {
-                flag = 1;
+            if (!strcmp(p.nome, ps[i].nome)) {
+                repeat = 1;
+                break;
             }else
-                flag = 0;
-
+                repeat = 0;
         }
-    }while (flag == 1);
+    }while (repeat);
 
 
         p.nome[strlen(p.nome)] = '\0';            // tirar o espaço

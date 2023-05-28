@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include "paragem.h"
 #include "linha.h"
+#include "ficheiros.h"
 #include <string.h>
 
-
+#define M 5
 
 int main(void) {
     int nParagens = 0;
@@ -13,7 +14,7 @@ int main(void) {
     Linha *linha = NULL; //linked list das linhas
     Linha *nova;
     Linha* teste; //para testes SÓ
-    char codigo[5];
+    char codigo[M];
 
 
 
@@ -46,7 +47,7 @@ int main(void) {
                 continue;
             case 3:
                 printf("Digite o codigo da paragem que deseja apagar: \n");
-                if(!fgets(codigo, 255, stdin)){
+                if(!fgets(codigo, M, stdin)){
                     fprintf(stderr, "Erro de Leitura");
                 }
                 codigo[strlen(codigo)] = '\0';
@@ -84,12 +85,15 @@ int main(void) {
                 //teste = getLinha(linha);
                // printf("%s", teste->nome);
                 continue;
+            case 7:
+                break;
             default:
                 printf("Opcao invalida\n");
                 continue;
         }
     }
 
+    storeInFile("teste.bin", ps, linha, nParagens);
     return 0;
 
     /*p = criarParagem();
