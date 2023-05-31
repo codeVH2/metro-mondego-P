@@ -5,6 +5,8 @@
 #include "linha.h"
 #include "paragem.h"
 
+
+
 /* Nome: criarParagem
  * Cria uma paragem do tipo struct Paragem com nome e codigo alfanumerico*/
 Paragem criarParagem(Paragem *ps, int *nParagens) {
@@ -89,6 +91,10 @@ int getParagem(Paragem *ps, char cod[], int *nParagens){
 }
 
 void mostrarParagens(Paragem *ps, int nParagens){
+    if(ps == NULL){
+        printf("Nao existe paragens registadas\n\n");
+        return;
+    }
     for(int i = 0; i < nParagens; i++){
         printf("Paragem - %d: %s, %s\n", i, ps[i].nome, ps[i].codigo);
     }
@@ -103,6 +109,7 @@ void mostrarParagens(Paragem *ps, int nParagens){
 Paragem* apagaParagem(Paragem *ps, int posicao, int *nParagens){
     if(*nParagens == 1){
         ps = NULL;
+        return ps;
     }
     Paragem aux = ps[*nParagens - 1];
     Paragem *aux2;
