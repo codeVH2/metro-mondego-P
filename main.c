@@ -19,7 +19,7 @@ int main(void) {
 
 
     char Stropcao[255];
-    int opcao;
+    int opcao = -1  ;
 
     while (opcao != 7){
 
@@ -31,12 +31,13 @@ int main(void) {
         printf("6 - Modificar Linha\n");
         printf("7 - Sair\n");
 
+
       if  (!fgets(Stropcao, 255, stdin)){
           fprintf(stderr, "Erro de leitura");
           continue;
       }
       opcao = atoi(Stropcao);
-
+        printf("%d\n", opcao);
         switch(opcao){
             case 1:
                 p = criarParagem(ps, &nParagens);
@@ -52,8 +53,17 @@ int main(void) {
                 }
                 codigo[strlen(codigo)] = '\0';
                 int posicao = getParagem(ps, codigo, &nParagens);
+                if (posicao == -1) {
+                    printf("Paragem nao encontrada\n");
+                    while (getchar() != '\n'); // Limpa o buffer de entrada apenas se a paragem não for encontrada
+                    continue;
+                }
+
                 printf("Paragem numero:%d foi apagada\n", posicao);
                 ps = apagaParagem(ps, posicao, &nParagens);
+
+                while (getchar() != '\n'); // Limpa o buffer de entrada
+
                 continue;
             case 4:
                 nova = criarLinha(ps, nParagens);
@@ -91,6 +101,7 @@ int main(void) {
                 printf("Opcao invalida\n");
                 continue;
         }
+
     }
 
     storeInFile("teste.bin", ps, linha, nParagens);

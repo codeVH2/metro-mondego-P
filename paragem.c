@@ -5,7 +5,20 @@
 #include "linha.h"
 #include "paragem.h"
 
+void gerarCodigoAlfanumerico(char* codigo) {
+    srand(time(NULL));
 
+    for (int i = 0; i < 4; i++) {
+        int randomNum = rand() % 36; // 36 caracteres alfanuméricos possíveis
+        if (randomNum < 10) {
+            codigo[i] = randomNum + '0'; // dígitos numéricos (0-9)
+        } else {
+            codigo[i] = randomNum - 10 + 'A'; // letras maiúsculas (A-Z)
+        }
+    }
+
+    codigo[4] = '\0'; // adiciona o caractere nulo no final
+}
 
 /* Nome: criarParagem
  * Cria uma paragem do tipo struct Paragem com nome e codigo alfanumerico*/
@@ -21,32 +34,33 @@ Paragem criarParagem(Paragem *ps, int *nParagens) {
             strcpy(p.nome, "default");
         };
 
+
         for (int i = 0; i < *nParagens; i++) {
             if (!strcmp(p.nome, ps[i].nome)) {
                 repeat = 1;
                 break;
-            }else
+            } else
                 repeat = 0;
         }
+
     }while (repeat);
 
 
-        p.nome[strlen(p.nome)] = '\0';            // tirar o espaço
-        if (!fgets(p.codigo, 5, stdin)) {
-            fprintf(stderr, "Erro de leitura");
-            strcpy(p.codigo, "0000");
 
-        };
-        p.codigo[strlen(p.codigo)] = '\0';            // tirar o espaço
-        return p;
+    char c[5];
+
+    gerarCodigoAlfanumerico(c);
+
+    strcpy(p.codigo, c);
+
+    return p;
 }
 
 
 /* Nome: registarParagem
  * Regista a paragem na ultima posição do array dinamico de estruturas de paragens
- *
- * ps - O array dinamico de estruturas de paragens
- * nP - numero de paragens que constam no array
+ * ps- ponteiro para paragens
+ * nP- ponteiro para numero de paragens
  * p - Paragem ja criada pela função criarParagem()
  *
  * return ps - devolve o array atualizado com a nova Paragem
