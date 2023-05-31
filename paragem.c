@@ -33,6 +33,7 @@ Paragem criarParagem(Paragem *ps, int *nParagens) {
             fprintf(stderr, "Erro de leitura");
             strcpy(p.nome, "default");
         };
+        p.nome[strlen(p.nome) - 1] = '\0';
 
         for (int i = 0; i < *nParagens; i++) {
             if (!strcmp(p.nome, ps[i].nome)) {
@@ -106,7 +107,7 @@ void mostrarParagens(Paragem *ps, int nParagens){
         return;
     }
     for(int i = 0; i < nParagens; i++){
-        printf("Paragem - %d: %s, %s\n", i, ps[i].nome, ps[i].codigo);
+        printf("Paragem: %d\nNome: %s\nCodigo: %s\n\n", i, ps[i].nome, ps[i].codigo);
     }
 }
 

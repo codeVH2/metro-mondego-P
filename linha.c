@@ -141,3 +141,24 @@ Linha* addParagemParaLinha(Linha* l, Paragem *p, int nParagens){
     return l;
 
 }
+
+/*Nome: mostraLinhasEmParagem*/
+void mostraLinhasEmParagem(char cod[], Linha* ls){
+    printf("A paragem com o codigo %s esta nas seguintes linhas:\n", cod);
+
+    int inLine = 0;
+    for(Linha* aux = ls; aux != NULL; aux = aux->prox){
+        for(int i = 0; i < aux->n_paragens; i++){
+            if(!strcmp(cod, aux->paragens[i].codigo)){
+                printf("Nome: %s\n", aux->nome);
+                inLine = 1;
+                break;
+            }
+        }
+    }
+    if(!inLine){
+        printf("Nenhuma Linha foi encontrada com esta paragem\n");
+    }
+}
+
+

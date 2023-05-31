@@ -37,15 +37,49 @@ int main(void) {
           continue;
       }
       opcao = atoi(Stropcao);
-        printf("%d\n", opcao);
+
+
         switch(opcao){
             case 1:
                 p = criarParagem(ps, &nParagens);
                 ps = registarParagem(ps, &nParagens, p);                
                 continue;
+
             case 2:
-                mostrarParagens(ps, nParagens);
+                printf("Selecione uma opcao:\n");
+                printf("1 - Mostrar todas as paragens\n");
+                printf("2 - Listar todas as linhas a que uma paragem pertence\n");
+
+                if(!fgets(Stropcao, 255, stdin))
+                {
+                    fprintf(stderr, "Erro ao ler a string do stdin.\n");
+                }
+                int opcao2 = atoi(Stropcao);
+
+
+                int pos;
+                switch(opcao2) {
+                    case 1:
+                        mostrarParagens(ps, nParagens);
+                        continue;
+                    case 2:
+                        printf("Digite o codigo da paragem\n");
+                        if(!fgets(codigo, M, stdin)){
+                            fprintf(stderr, "Erro de Leitura");
+                        }
+                        codigo[strlen(codigo)] = '\0';
+                        mostraLinhasEmParagem(codigo, linha);
+
+                        while (getchar() != '\n'); // Limpa o buffer de entrada
+
+                        continue;
+                }
+
+
+                //teste = getLinha(linha);
+                // printf("%s", teste->nome);
                 continue;
+
             case 3:
                 printf("Digite o codigo da paragem que deseja apagar: \n");
                 if(!fgets(codigo, M, stdin)){
@@ -65,13 +99,16 @@ int main(void) {
                 while (getchar() != '\n'); // Limpa o buffer de entrada
 
                 continue;
+
             case 4:
                 nova = criarLinha(ps, nParagens);
                 linha = registarLinha(linha, nova);
                 continue;
+
             case 5:
                 mostrarLinhas(linha);
                 continue;
+
             case 6:
                 printf("Selecione uma opcao:\n");
                 printf("1 - Adicionar paragens a uma linha ja existente\n");
@@ -91,10 +128,8 @@ int main(void) {
                         continue;
                 }
 
-
-                //teste = getLinha(linha);
-               // printf("%s", teste->nome);
                 continue;
+
             case 7:
                 break;
             default:

@@ -20,4 +20,5 @@ Paragem* paragensParaLinha(Paragem* ps, int nParagens, int* nParagens2);
 void mostrarLinhas(Linha* linha);
 Linha* getLinha(Linha *ls);
 Linha* addParagemParaLinha(Linha* l, Paragem *p, int nParagens);
+void mostraLinhasEmParagem(char cod[], Linha* ls);
 #endif //PROJETO_C_LINHA_H
