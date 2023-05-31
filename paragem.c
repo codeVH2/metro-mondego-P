@@ -34,7 +34,6 @@ Paragem criarParagem(Paragem *ps, int *nParagens) {
             strcpy(p.nome, "default");
         };
 
-
         for (int i = 0; i < *nParagens; i++) {
             if (!strcmp(p.nome, ps[i].nome)) {
                 repeat = 1;
@@ -44,7 +43,6 @@ Paragem criarParagem(Paragem *ps, int *nParagens) {
         }
 
     }while (repeat);
-
 
 
     char c[5];
@@ -71,10 +69,8 @@ Paragem* registarParagem(Paragem *ps, int *nP, Paragem p) {
 
     if(*nP < 0)
         *nP = 0;
-    (*nP)++;
-
-
-    aux = realloc(ps, (*nP) * sizeof(Paragem));
+    (*nP)++; 
+    aux = (Paragem*) realloc(ps, (*nP) * sizeof(Paragem));
     if(aux == NULL){
         fprintf(stderr, "Não foi possivel registar uma nova paragem.\n"); //da print sem encher o stdio
         (*nP--);
@@ -83,7 +79,7 @@ Paragem* registarParagem(Paragem *ps, int *nP, Paragem p) {
 
     strcpy(aux[(*nP)-1].nome, p.nome);
     strcpy(aux[(*nP)-1].codigo, p.codigo);
-    //aux[*nP - 1] = p; // copia a paragem para a ultima posição do array
+
 
     return aux;
     
@@ -120,20 +116,22 @@ void mostrarParagens(Paragem *ps, int nParagens){
  * ps - ponteiro para o array
  * posicao - posicao onde esta a paragem que é para ser eliminada
  * nParagens - numero de paragens no array*/
+
 Paragem* apagaParagem(Paragem *ps, int posicao, int *nParagens){
+    Paragem *aux;
+
     if(*nParagens == 1){
+        *nParagens = 0;
         ps = NULL;
         return ps;
     }
-    Paragem aux = ps[*nParagens - 1];
-    Paragem *aux2;
-    --(*nParagens);
-    aux2 = realloc(ps, (*nParagens) * sizeof(Paragem));
-    if(aux2 == NULL){
+    ps[posicao] = ps[*nParagens - 1];
+    (*nParagens)--;
+    aux = (Paragem*) realloc(ps, (*nParagens) * sizeof(Paragem));
+    if(aux == NULL){
         fprintf(stderr, "Não foi possivel apagar a paragem.\n");
-        ++(*nParagens);
         return ps;
-    };
-    aux2[posicao] = aux;
-        return aux2;
+    }
+
+    return aux;
 }
