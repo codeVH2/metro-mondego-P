@@ -125,6 +125,8 @@ int main(void) {
                         addParagemParaLinha(linha, ps, nParagens);
                         continue;
                     case 2:
+                        apagaParagemEmLinha(linha);
+                        while (getchar() != '\n'); // Limpa o buffer de entrada
                         continue;
                 }
 

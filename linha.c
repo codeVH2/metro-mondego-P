@@ -142,7 +142,11 @@ Linha* addParagemParaLinha(Linha* l, Paragem *p, int nParagens){
 
 }
 
-/*Nome: mostraLinhasEmParagem*/
+/*Nome: mostraLinhasEmParagem
+ * recebe:
+ * cod - codigo da paragem
+ * ls - ponteiro para linked list de linhas
+*/
 void mostraLinhasEmParagem(char cod[], Linha* ls){
     printf("A paragem com o codigo %s esta nas seguintes linhas:\n", cod);
 
@@ -159,6 +163,42 @@ void mostraLinhasEmParagem(char cod[], Linha* ls){
     if(!inLine){
         printf("Nenhuma Linha foi encontrada com esta paragem\n");
     }
+}
+
+/*Nome: apagaParagemEmLinha
+ * recebe:
+ * ls- ponteiro para a linked list de paragens
+ * devolve:
+ * ls- ponteiro para a linked list de paragens*/
+Linha* apagaParagemEmLinha(Linha* ls){
+    char codigo[5];
+    Linha *linha;
+
+    do{
+        printf("Indique o nome da linha que quer alterar: \n");
+        linha = getLinha(ls);
+    }while(!linha);  //Pede constantemente o nome da linha se o nome da linha nao exister na linked list
+
+    mostrarParagens(linha->paragens, linha->n_paragens);
+    printf("Digite o codigo da paragem que deseja eleminar da linha: \n");
+
+    if(!fgets(codigo, 5, stdin)){
+        fprintf(stderr, "Erro de Leitura");
+    }
+    codigo[strlen(codigo)] = '\0';
+
+    int posicao = getParagem(linha->paragens, codigo, &linha->n_paragens);
+
+    if (posicao == -1) {
+        printf("Paragem nao encontrada\n");
+
+        return 0;
+    }
+
+    linha->paragens = apagaParagem(linha->paragens, posicao, &linha->n_paragens);
+
+    return ls;
+
 }
 
 
