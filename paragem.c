@@ -90,7 +90,7 @@ Paragem* registarParagem(Paragem *ps, int *nP, Paragem p) {
  * obtem o indice de uma paragem no array de paragens.
  * recebe o codigo
  * return do indice (posição) ou -1 se não houver a paragem*/
-int getParagem(Paragem *ps, char cod[], int *nParagens){
+int getParagem(Paragem *ps, char cod[], int *nParagens  ){
     int indice = -1;
     for(int i = 0; i < *nParagens; i++){
         if(!strcmp(cod, ps[i].codigo)){

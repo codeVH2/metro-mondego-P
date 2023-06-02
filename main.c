@@ -75,7 +75,6 @@ int main(void) {
                         continue;
                 }
 
-
                 //teste = getLinha(linha);
                 // printf("%s", teste->nome);
                 continue;
