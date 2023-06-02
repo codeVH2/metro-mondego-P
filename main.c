@@ -81,19 +81,32 @@ int main(void) {
 
             case 3:
                 printf("Digite o codigo da paragem que deseja apagar: \n");
+
                 if(!fgets(codigo, M, stdin)){
                     fprintf(stderr, "Erro de Leitura");
                 }
                 codigo[strlen(codigo)] = '\0';
+
                 int posicao = getParagem(ps, codigo, &nParagens);
+
                 if (posicao == -1) {
                     printf("Paragem nao encontrada\n");
                     while (getchar() != '\n'); // Limpa o buffer de entrada apenas se a paragem não for encontrada
                     continue;
                 }
 
-                printf("Paragem numero:%d foi apagada\n", posicao);
-                ps = apagaParagem(ps, posicao, &nParagens);
+                int ver = verificaParagemNaLinha(linha,  codigo);
+
+                if(!ver){
+                    printf("Paragem numero:%d foi apagada\n", posicao);
+                    ps = apagaParagem(ps, posicao, &nParagens);
+                }else if(ver){
+                    printf("A paragem que tentou apagar encontra-se numa linha. Apague primeiro nas linhas para usar esta opcao\n");
+                }
+
+
+
+
 
                 while (getchar() != '\n'); // Limpa o buffer de entrada
 

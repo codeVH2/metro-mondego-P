@@ -202,3 +202,16 @@ Linha* apagaParagemEmLinha(Linha* ls){
 }
 
 
+int verificaParagemNaLinha(Linha* ls, char cod[]){
+    Linha* aux = ls;
+
+    while(aux != NULL){
+        for(int i = 0; i < aux->n_paragens; i++){
+            if(strcmp(aux->paragens[i].codigo, cod) == 0)
+                return 1;
+        }
+        aux = aux->prox;
+    }
+    return 0;
+}
+

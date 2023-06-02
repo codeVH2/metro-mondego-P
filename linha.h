@@ -22,4 +22,5 @@ Linha* getLinha(Linha *ls);
 Linha* addParagemParaLinha(Linha* l, Paragem *p, int nParagens);
 void mostraLinhasEmParagem(char cod[], Linha* ls);
 Linha* apagaParagemEmLinha(Linha* ls);
+int verificaParagemNaLinha(Linha* ls, char cod[]);
 #endif //PROJETO_C_LINHA_H
