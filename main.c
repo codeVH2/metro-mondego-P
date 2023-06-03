@@ -16,7 +16,7 @@ int main(void) {
     Linha* teste; //para testes SÓ
     char codigo[M];
 
-
+    readFile("bin.bin", &linha, &ps, &nParagens );
 
     char Stropcao[255];
     int opcao = -1  ;
@@ -153,7 +153,7 @@ int main(void) {
 
     }
 
-    storeInFile("teste.bin", ps, linha, nParagens);
+    storeInFile("bin.bin", ps, linha, nParagens);
     return 0;
 
     /*p = criarParagem();

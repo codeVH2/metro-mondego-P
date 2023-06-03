@@ -5,5 +5,6 @@
 #include "paragem.h"
 
 void storeInFile(char *filename, Paragem *ps, Linha *ls, int nParagens);
+void readFile(char *nomeF, Linha** ls, Paragem** ps, int *nParagens);
 
 #endif //PROJETO_C_FICHEIROS_H
