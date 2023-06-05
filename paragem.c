@@ -101,6 +101,17 @@ int getParagem(Paragem *ps, char cod[], int *nParagens  ){
         return indice;
 }
 
+int getParagemWithName(Paragem *ps, char nome[], int *nParagens  ){
+    int indice = -1;
+    for(int i = 0; i < *nParagens; i++){
+        if(!strcmp(nome, ps[i].nome)){
+            indice = i;
+            break;
+        }
+    }
+    return indice;
+}
+
 void mostrarParagens(Paragem *ps, int nParagens){
     if(ps == NULL){
         printf("Nao existe paragens registadas\n\n");

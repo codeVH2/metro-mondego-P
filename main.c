@@ -15,8 +15,11 @@ int main(void) {
     Linha *nova;
     Linha* teste; //para testes SÓ
     char codigo[M];
+    char nomeFicheiro[255]; //nome do ficheiro de texto que se quer ler
+
 
     readFile("bin.bin", &linha, &ps, &nParagens );
+
 
     char Stropcao[255];
     int opcao = -1  ;
@@ -29,7 +32,8 @@ int main(void) {
         printf("4 - Registar linha\n");
         printf("5 - Listar linhas\n");
         printf("6 - Modificar Linha\n");
-        printf("7 - Sair\n");
+        printf("7 - Ler Ficheiro de Texto\n");
+        printf("8 - Sair\n");
 
 
       if  (!fgets(Stropcao, 255, stdin)){
@@ -143,8 +147,18 @@ int main(void) {
                 }
 
                 continue;
-
             case 7:
+                nomeFicheiro[255];
+                printf("Digite o nome do ficheiro que deseja ler: \n");
+                if(!fgets(nomeFicheiro, 255, stdin)){
+                    fprintf(stderr, "Erro de Leitura");
+                }
+                //remover o \n no final da string
+                nomeFicheiro[strlen(nomeFicheiro) - 1] = '\0';
+                fileTXT(nomeFicheiro, &ps, &nParagens, &linha);
+                continue;
+
+            case 8:
                 break;
             default:
                 printf("Opcao invalida\n");
