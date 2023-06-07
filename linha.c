@@ -90,6 +90,7 @@ void mostrarLinhas(Linha* linha){
 Linha* getLinha(Linha *ls){
     char nome[255];
     fgets(nome, 255, stdin);
+    nome[strlen(nome)-1] = '\0';
 
     Linha* aux;
     aux = ls;

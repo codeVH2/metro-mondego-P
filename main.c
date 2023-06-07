@@ -24,8 +24,8 @@ int main(void) {
     char Stropcao[255];
     int opcao = -1  ;
 
-    while (opcao != 7){
-
+    while (opcao != 8){
+        printf("-------------------------------------------------------------------------------------\n");
         printf("1 - Registar paragem\n");
         printf("2 - Listar paragens\n");
         printf("3 - Apagar paragem\n");
@@ -34,7 +34,7 @@ int main(void) {
         printf("6 - Modificar Linha\n");
         printf("7 - Ler Ficheiro de Texto\n");
         printf("8 - Sair\n");
-
+        printf("-------------------------------------------------------------------------------------\n");
 
       if  (!fgets(Stropcao, 255, stdin)){
           fprintf(stderr, "Erro de leitura");
@@ -170,28 +170,5 @@ int main(void) {
     storeInFile("bin.bin", ps, linha, nParagens);
     return 0;
 
-    /*p = criarParagem();
-    ps = registarParagem(ps, &nParagens, p);
-    p = criarParagem();
-    ps = registarParagem(ps, &nParagens, p);
-    p = criarParagem();
-    ps = registarParagem(ps, &nParagens, p);
 
-    mostrarParagens(ps, nParagens);
-
-
-    printf("%d\n", nParagens);
-
-    char nome[10];
-    fgets(nome, 10, stdin);
-    nome[strlen(nome) - 1] = '\0';
-
-    int posicao = getParagem(ps, nome, &nParagens);
-    printf("%d\n", posicao);
-
-    apagaParagem(ps, posicao, &nParagens);
-
-    mostrarParagens(ps, nParagens);*/
-
-   
 }

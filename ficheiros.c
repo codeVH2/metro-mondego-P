@@ -42,7 +42,6 @@ Paragem *readParagens(Paragem* ps, int *nParagens, FILE *f){
     //int temp;
     fread(&(*nParagens), sizeof(int), 1, f);
 
-    printf("%d\n", *nParagens);
 
     ps = (Paragem*)malloc((*nParagens) * sizeof (Paragem)); //malloc do tipo Paragem para o array de paragens geral
     //*nParagens = temp;
