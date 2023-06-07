@@ -42,6 +42,7 @@ Linha* criarLinha(Paragem* ps, int nParagens){
     Linha* linha = (Linha*) malloc(sizeof(Linha));
     printf("Nome para a linha: ");
     fgets(linha->nome, N, stdin);
+    linha->nome[strlen(linha->nome)-1] = '\0';
     linha->n_paragens = 0;
     linha->paragens = paragensParaLinha( ps ,  nParagens , &linha->n_paragens );
     linha->prox = NULL;
@@ -215,4 +216,74 @@ int verificaParagemNaLinha(Linha* ls, char cod[]){
     }
     return 0;
 }
+
+
+/*Nome: connected
+ * Verifica se a paragem da origem esta numa linha e se o destino esta na mesma linha apos ela
+ * Recebe:
+ * l- ponteiro para a linha que esta a verificar
+ * p1- nome da origem
+ * p2- nome do destino
+ * Devolve: 1 se encontrou ou 0 se nao*/
+Paragem *connected(Linha *l, char p1[200], char p2[200], int *n_paragensCaminho){
+    int encontrou = 0;
+    Paragem *caminho = NULL;
+
+    for(int i = 0; i < l->n_paragens; i++){
+        if(encontrou == 0 && (strcmp(l->paragens[i].nome, p1) == 0 || strcmp(l->paragens[i].nome, p2) == 0)){
+            caminho = registarParagem(caminho, n_paragensCaminho, l->paragens[i]);
+            encontrou = 1;
+        }
+        else if(encontrou == 1){
+            if(strcmp(l->paragens[i].nome, p2) == 0 || strcmp(l->paragens[i].nome, p1) == 0){
+                caminho = registarParagem(caminho, n_paragensCaminho, l->paragens[i]);
+                return caminho;
+            }
+            else{
+                caminho = registarParagem(caminho, n_paragensCaminho, l->paragens[i]);
+            }
+
+        }
+    }
+    return NULL;
+
+}
+
+void encontraPercursoNumaLinha(Linha *ls, Paragem *ps, int nParagens){
+    char origem[200];
+    char destino[200];
+    Linha *aux = ls;
+    Paragem *caminho;
+    int nParagensCaminho = 0;
+
+    printf("Indique o nome da paragem de origem: \n");
+    fgets(origem, 255, stdin);;
+    origem[strlen(origem) - 1] = '\0'; //retirar o \n do fgets
+    if(verificaSeParagemExiste(ps, nParagens, origem) == 0){
+        fprintf(stderr, "Paragem nao encontrada\n");
+        return;
+    }
+
+    printf("Indique o nome da paragem de destino: \n");
+    fgets(destino, 255, stdin);
+    destino[strlen(destino) - 1] = '\0';
+    if(verificaSeParagemExiste(ps, nParagens, destino) == 0){
+        fprintf(stderr, "Paragem nao encontrada\n");
+        return;
+    }
+
+    while (aux != NULL){
+
+        caminho = connected(aux, origem, destino, &nParagensCaminho);
+        if(caminho != NULL){
+            printf("O percurso entre %s e %s na linha %s e:\n", origem, destino, aux->nome);
+            mostrarParagens(caminho, nParagensCaminho);
+        }
+        caminho = NULL;
+        nParagensCaminho = 0;
+        aux = aux->prox;
+    }
+
+}
+
 

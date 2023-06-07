@@ -24,7 +24,7 @@ int main(void) {
     char Stropcao[255];
     int opcao = -1  ;
 
-    while (opcao != 8){
+    while (opcao != 9){
         printf("-------------------------------------------------------------------------------------\n");
         printf("1 - Registar paragem\n");
         printf("2 - Listar paragens\n");
@@ -33,7 +33,8 @@ int main(void) {
         printf("5 - Listar linhas\n");
         printf("6 - Modificar Linha\n");
         printf("7 - Ler Ficheiro de Texto\n");
-        printf("8 - Sair\n");
+        printf("8 - Percurso numa Linha\n");
+        printf("9 - Sair\n");
         printf("-------------------------------------------------------------------------------------\n");
 
       if  (!fgets(Stropcao, 255, stdin)){
@@ -147,18 +148,23 @@ int main(void) {
                 }
 
                 continue;
+
             case 7:
                 nomeFicheiro[255];
                 printf("Digite o nome do ficheiro que deseja ler: \n");
                 if(!fgets(nomeFicheiro, 255, stdin)){
                     fprintf(stderr, "Erro de Leitura");
                 }
-                //remover o \n no final da string
-                nomeFicheiro[strlen(nomeFicheiro) - 1] = '\0';
+
+                nomeFicheiro[strlen(nomeFicheiro) - 1] = '\0'; //remover o \n no final da string
                 fileTXT(nomeFicheiro, &ps, &nParagens, &linha);
                 continue;
 
             case 8:
+                encontraPercursoNumaLinha(linha, ps, nParagens);
+                continue;
+
+            case 9:
                 break;
             default:
                 printf("Opcao invalida\n");

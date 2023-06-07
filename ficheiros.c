@@ -146,6 +146,7 @@ void fileTXT(char* fileName, Paragem **ps, int *nParagens , Linha **ls){
 
     int cont = 0; //serve para contar o numero de paragens lidos, para depois dar realloc no array de paragens da linha
     while(fscanf(file, "%[^#]# %s\n", nomeParagem, codParagem) == 2){
+        nomeParagem[strlen(nomeParagem) - 1] = '\0'; //retira o espaço no fim do nome da paragem
         if(getParagem(*ps, codParagem, nParagens) != -1 || getParagemWithName(*ps, nomeParagem, nParagens) != -1){ //verifica se a paragem ja existe no programa
             fprintf(stderr, "A paragem ja se encontra registrada no programa\n");
             fclose(file);

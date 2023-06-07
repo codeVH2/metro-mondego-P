@@ -70,7 +70,7 @@ Paragem* registarParagem(Paragem *ps, int *nP, Paragem p) {
 
     if(*nP < 0)
         *nP = 0;
-    (*nP)++; 
+    (*nP)++;
     aux = (Paragem*) realloc(ps, (*nP) * sizeof(Paragem));
     if(aux == NULL){
         fprintf(stderr, "Não foi possivel registar uma nova paragem.\n"); //da print sem encher o stdio
@@ -146,4 +146,15 @@ Paragem* apagaParagem(Paragem *ps, int posicao, int *nParagens){
     }
 
     return aux;
+}
+
+int verificaSeParagemExiste(Paragem *ps, int nParagens, char nome[200]){
+    int existe = 0;
+    for(int i = 0; i < nParagens; i++){
+        if(strcmp(ps[i].nome, nome) == 0){
+            existe = 1;
+            break;
+        }
+    }
+    return existe;
 }
