@@ -20,6 +20,7 @@ Paragem* paragensParaLinha(Paragem* ps, int nParagens, int* nParagens2){
     mostrarParagens(ps, nParagens);
 
     printf("Escolha as paragens que quer adicionar a sua linha indicando o seu numero: \n");
+    printf("Introduza '-1' quando acabar\n");
 
     do{
         fgets(strindice, 255, stdin);
@@ -133,10 +134,22 @@ Linha* addParagemParaLinha(Linha* l, Paragem *p, int nParagens){
         fgets(strindice, 255, stdin);
         option = atoi(strindice);
 
+        for(int i = 0; i < linhaParaMudar->n_paragens; i++){
+            if(strcmp(p[option].codigo, linhaParaMudar->paragens[i].codigo) == 0){
+                printf("Esta paragem ja esta na linha\n");
+                printf("Por favor continue a inserir outras paragens\n");
+                option = -2;
+                break;
+            }
+        }
+        if(option == -2){
+            continue;
+        }
+
+
         if(option >= 0 && option < nParagens){
             linhaParaMudar->paragens = registarParagem(linhaParaMudar->paragens, &linhaParaMudar->n_paragens , p[option]);
         }
-
 
     }while(option != -1);
 
